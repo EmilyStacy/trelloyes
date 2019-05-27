@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import List from './LIST/List';
 import './App.css';
-import STORE from './STORE';
+import STORE from './store';
 const ConsoleLog = ({ children }) => {
   console.log(children);
   return false;
@@ -31,8 +31,9 @@ class App extends Component {
   //why the map function needs this: ({})
   
   // does setState always goes like ({})
-  DeleteCard = (cardId) =>{
+  DeleteCard = (cardId) =>{ 
     const {lists, allCards} = this.state.store;
+    cardId = allCards.id
     const newLists =lists.map((list) =>({
       ...list,
       cardIds:list.cardIds.filter(id => id!==cardId)
@@ -40,6 +41,7 @@ class App extends Component {
     const newCards = omit(allCards, cardId);
     console.log(cardId)
     console.log(newCards)
+    console.log(allCards)
     this.setState({
       store:{
         lists:newLists,
@@ -98,7 +100,7 @@ class App extends Component {
       header = {list.header}
       cards = {list.cardIds.map (id =>
         store.allCards[id])}
-        onDeleteItem = {this.DeleteCard}
+        onDeleteItem = {this.DeleteCard.bind(this)}
         onAddItem = {this.AddCard}/>
      )}
      </div>
