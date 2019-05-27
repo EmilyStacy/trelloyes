@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import List from './LIST/List';
 import './App.css';
-import STORE from './store';
+import STORE from './STORE';
 const ConsoleLog = ({ children }) => {
   console.log(children);
   return false;
