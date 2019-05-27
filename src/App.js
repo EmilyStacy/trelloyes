@@ -33,7 +33,7 @@ class App extends Component {
   // does setState always goes like ({})
   DeleteCard = (cardId) =>{ 
     const {lists, allCards} = this.state.store;
-    cardId = allCards.id
+    cardId = allCards.key
     const newLists =lists.map((list) =>({
       ...list,
       cardIds:list.cardIds.filter(id => id!==cardId)
