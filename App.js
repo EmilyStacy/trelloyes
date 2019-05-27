@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import List from './LIST/List';
 import './App.css';
 import STORE from './store';
+const ConsoleLog = ({ children }) => {
+  console.log(children);
+  return false;
+};
 
 function omit(obj, keyToOmit) {
   return Object.entries(obj).reduce(
@@ -33,9 +37,9 @@ class App extends Component {
       ...list,
       cardIds:list.cardIds.filter(id => id!==cardId)
     }));
-
     const newCards = omit(allCards, cardId);
-    console.log(newCards);
+    console.log(cardId)
+    console.log(newCards)
     this.setState({
       store:{
         lists:newLists,
@@ -80,6 +84,8 @@ class App extends Component {
 
   render(){
     const {store} = this.state;
+    console.log(store.allCard, 'All cards')
+    console.log(store.lists, 'List cards')
   return (
     <main className='App'>
       <header className="App-header">
@@ -94,10 +100,11 @@ class App extends Component {
         store.allCards[id])}
         onDeleteItem = {this.DeleteCard}
         onAddItem = {this.AddCard}/>
-     )} 
+     )}
      </div>
     </main>
   )
+  
 
 }
 }
