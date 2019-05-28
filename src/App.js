@@ -18,13 +18,8 @@ class App extends Component {
   state = {
     store: STORE,
   }
-  static defaultProps ={
-    store:{
-      lists:[],
-      allCards:{},
-    }
-  };
-
+  
+ 
   //to delete the cards from CARD: DeleteCard(){}
   //need to put a function to delete the card Ids and card first (see top)
   // don't get this function: why creating two consts again?
@@ -33,8 +28,7 @@ class App extends Component {
   // does setState always goes like ({})
   DeleteCard = (cardId) =>{ 
     const {lists, allCards} = this.state.store;
-    cardId = allCards.key
-    const newLists =lists.map((list) =>({
+    const newLists =lists.map(list =>({
       ...list,
       cardIds:list.cardIds.filter(id => id!==cardId)
     }));
@@ -85,7 +79,7 @@ class App extends Component {
   }
 
   render(){
-    const {store} = this.state;
+    const {store} = this.state
     console.log(store.allCard, 'All cards')
     console.log(store.lists, 'List cards')
   return (
@@ -100,7 +94,7 @@ class App extends Component {
       header = {list.header}
       cards = {list.cardIds.map (id =>
         store.allCards[id])}
-        onDeleteItem = {this.DeleteCard.bind(this)}
+        onDeleteItem = {this.DeleteCard}
         onAddItem = {this.AddCard}/>
      )}
      </div>
